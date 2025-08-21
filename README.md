@@ -1,0 +1,2 @@
+# SilentInstaller
+使用Shizuku进行静默安装的Android library
