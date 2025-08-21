@@ -4,16 +4,17 @@ plugins {
     id 'maven-publish'
 }
 
-def buildToolsVer = "com.itsaky.androidide".equals(System.getenv('TERMUX_APP__PACKAGE_NAME')) ? "34.0.4" : null
+//def buildToolsVer = "com.itsaky.androidide".equals(System.getenv('TERMUX_APP__PACKAGE_NAME')) ? "34.0.4" : null
 
 android {
     namespace 'io.github.miyazkaori.silentinstaller'
     compileSdk 34
     
+    /*
     if(buildToolsVersion != null) {
         buildToolsVersion = buildToolsVer
     }
-    
+    */
     
     defaultConfig {
         minSdk 26
