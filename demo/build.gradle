@@ -1,0 +1,49 @@
+
+plugins {
+    id 'com.android.application'
+    
+}
+
+android {
+    namespace 'io.github.miyazkaori.silentinstaller.demo'
+    compileSdk 34
+    buildToolsVersion = "34.0.4"
+    
+    defaultConfig {
+        applicationId "io.github.miyazkaori.silentinstaller.demo"
+        minSdk 26
+        targetSdk 34
+        versionCode 1
+        versionName "1.0"
+        
+        vectorDrawables { 
+            useSupportLibrary true
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+
+    buildFeatures {
+        viewBinding true
+        
+    }
+    
+}
+
+dependencies {
+
+    implementation project(":installer")
+    implementation("androidx.appcompat:appcompat:1.6.1")
+    implementation("com.google.android.material:material:1.12.0")
+    implementation("androidx.constraintlayout:constraintlayout:2.1.4")
+}

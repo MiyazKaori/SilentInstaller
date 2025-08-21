@@ -1,0 +1,64 @@
+
+plugins {
+    id 'com.android.library'
+    id 'maven-publish'
+}
+
+def buildToolsVer = "com.itsaky.androidide".equals(System.getenv('TERMUX_APP__PACKAGE_NAME')) ? "34.0.4" : null
+
+android {
+    namespace 'io.github.miyazkaori.silentinstaller'
+    compileSdk 34
+    
+    if(buildToolsVersion != null) {
+        buildToolsVersion = buildToolsVer
+    }
+    
+    
+    defaultConfig {
+        minSdk 26
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+    
+    publishing {
+        singleVariant('release') {
+            withSourcesJar()
+        }
+    }
+}
+
+dependencies {
+    implementation 'androidx.annotation:annotation:1.7.1'
+    
+    compileOnly files('libs/hidden-api-stub.jar')
+    
+    def shizuku_version = "13.1.5"
+    implementation "dev.rikka.shizuku:api:$shizuku_version"
+    implementation "dev.rikka.shizuku:provider:$shizuku_version"
+    implementation 'org.lsposed.hiddenapibypass:hiddenapibypass:6.1'
+}
+
+publishing {
+  publications {
+    release(MavenPublication) {
+      groupId = 'io.github.miyazkaori'
+      artifactId = 'silentinstaller'
+      version = '1.0.0-alpha'
+
+      afterEvaluate {
+        from components.release
+      }
+    }
+  }
+}
